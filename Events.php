@@ -53,6 +53,23 @@ class Event
     }
 
     /**
+     * Unbinds a callback to a event.
+     * 
+     * @param string $event
+     *   Name of the event.
+     * @param string $callback
+     *   The method or function to call.
+     */
+    public function unbind($event, $callback)
+    {
+        foreach ($this->event_callbacks[$event] as $key => $event_callback) {
+            if ($event_callback == $callback) {
+                unset($this->event_callbacks[$event][$key]);
+            }
+        }
+    }
+
+    /**
      * Executes all the binded callbacks when the event is fired.
      * 
      * @param string $event
